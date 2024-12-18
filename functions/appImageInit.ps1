@@ -1,5 +1,24 @@
 function appImageInit(){
 
+	#Win_tools migration
+	pegasus_setPaths
+
+	$steamRegPath = "HKCU:\Software\Valve\Steam"
+	$steamInstallPath = (Get-ItemProperty -Path $steamRegPath).SteamPath
+	$steamInstallPath = $steamInstallPath.Replace("/", "\\")
+
+	$steamPath = "$steamInstallPath\userdata"
+	# Busca el archivo shortcuts.vdf en cada carpeta de userdata
+
+	$archivosLinksVDF = Get-ChildItem -Path $steamPath -File -Recurse -Filter "shortcuts.vdf"
+
+	if ($archivosLinksVDF.Count -gt 0) {
+		$archivosLinksVDF | ForEach-Object {
+			$filePath =  $_.FullName
+			sedFile $filePath "\tools\" "\tools_win"
+		}
+	}
+
 
 	#AutoFixes
 	mkdir "$env:USERPROFILE/emudeck/feeds" -ErrorAction SilentlyContinue

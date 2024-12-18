@@ -84,7 +84,7 @@ def generate_game_lists(roms_path):
         #if system_dir == "wiiu":
         #    system_dir = "wiiu/roms"
         full_path = os.path.join(roms_dir, system_dir)
-        if os.path.isdir(full_path) and not os.path.islink(full_path) and os.path.isfile(os.path.join(full_path, 'metadata.txt')):
+        if os.path.isdir(full_path) and not os.path.islink(full_path) and os.path.isfile(os.path.join(full_path, 'metadata.win.txt')):
             file_count = sum([len(files) for r, d, files in os.walk(full_path) if not os.path.islink(r)])
             if file_count > 2:
                 valid_system_dirs.append(full_path)
@@ -95,7 +95,7 @@ def generate_game_lists(roms_path):
         if any(x in system_dir for x in ["/model2", "/genesiswide", "/mame", "/emulators", "/desktop"]):
             continue
 
-        with open(os.path.join(system_dir, 'metadata.txt')) as f:
+        with open(os.path.join(system_dir, 'metadata.win.txt')) as f:
             metadata = f.read()
         collection = next((line.split(':')[1].strip() for line in metadata.splitlines() if line.startswith('collection:')), '')
         shortname = next((line.split(':')[1].strip() for line in metadata.splitlines() if line.startswith('shortname:')), '')

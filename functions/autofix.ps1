@@ -324,7 +324,7 @@ function autofix_controllerSettings(){
 }
 
 function autofix_gamecubeFolder(){
-	$test=Test-Path "$romsPath\gc\metadata.txt"
+	$test=Test-Path "$romsPath\gc\metadata.win.txt"
 	if ( -not $test ){
 
 		mkdir "$romsPath\gc_temp"

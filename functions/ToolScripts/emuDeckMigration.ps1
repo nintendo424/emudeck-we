@@ -84,12 +84,12 @@ function Migration_updatePaths {
 
     # Actualización de las nuevas rutas
     setSetting "emulationPath" $destination
-    setSetting "toolsPath" "$destination/tools"
+    setSetting "toolsPath" "$destination/tools_win"
     setSetting "romsPath" "$destination/roms"
     setSetting "biosPath" "$destination/bios"
     setSetting "savesPath" "$destination/saves"
     setSetting "storagePath" "$destination/storage"
-    setSetting "ESDEscrapData" "$destination/tools/downloaded_media"
+    setSetting "ESDEscrapData" "$destination/tools_win/downloaded_media"
 
     # Función para reemplazar rutas en archivos de configuración
     function Update-ConfigFile {
